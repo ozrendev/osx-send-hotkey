@@ -7,7 +7,7 @@ def initHotkey(keyPressed):
     applescriptCode = f"""
     try
         set hotkey to \"{keyPressed}\"
-        set siteList to ("https://platform.alpha-futures.com/trade", "https://topstepx.com/trade","https://bulenox.projectx.com/trade","https://futureselite.projectx.com/trade","https://trader.tradovate.com", "https://en.key-test.ru")
+        set siteList to ("https://platform.alpha-futures.com/trade", "https://topstepx.com/trade","https://bulenox.projectx.com/trade","https://futureselite.projectx.com/trade","https://trader.tradovate.com")
         activate application "Safari"
         repeat with site in siteList 
             repeat 1 times
@@ -15,12 +15,9 @@ def initHotkey(keyPressed):
                     tell application "Safari" to set theTab to first tab of window 1 whose URL contains site
                     tell application "Safari" to tell front window to set current tab to theTab
                     tell application "System Events"
-                        delay 0.25
-                        key down shift
-                        key down hotkey
                         delay 0.5
-                        key up hotkey
-                        key up shift
+                        keystroke hotkey using shift down
+                        delay 0.25
                     end tell
                     delay 1 
                 on error
@@ -53,27 +50,27 @@ def on_press(key):
         if all(k in current for k in SHIFT_J):
             initHotkey("J")
 
-    if key in SHIFT_K:
+    elif key in SHIFT_K:
         current.add(key)
         if all(k in current for k in SHIFT_K):
             initHotkey("K")
 
-    if key in SHIFT_U:
+    elif key in SHIFT_U:
         current.add(key)
         if all(k in current for k in SHIFT_U):
             initHotkey("U")
 
-    if key in SHIFT_I:
+    elif key in SHIFT_I:
         current.add(key)
         if all(k in current for k in SHIFT_I):
             initHotkey("I")
 
-    if key in SHIFT_P:
+    elif key in SHIFT_P:
         current.add(key)
         if all(k in current for k in SHIFT_P):
             initHotkey("P")
 
-    if key in SHIFT_L:
+    elif key in SHIFT_L:
         current.add(key)
         if all(k in current for k in SHIFT_L):
             initHotkey("L")
